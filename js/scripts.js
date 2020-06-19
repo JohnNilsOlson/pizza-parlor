@@ -120,4 +120,17 @@ $(document).ready(function() {
 
     console.log(pizza);
   });
+
+  $("#repeat").click(function() {
+
+    $("#instructions").hide();
+    $("#size-select").show();
+
+  });
+
+  $("#checkout").click(function() {
+
+    $("#instructions").hide();
+    $("#order").show();
+  });
 });
