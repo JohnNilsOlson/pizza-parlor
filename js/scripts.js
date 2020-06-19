@@ -40,6 +40,7 @@ $(document).ready(function() {
 
   const newCustomer = new Customer;
   const cart = new Cart;
+  let pizzaOne = new Pizza;
 
   $("#build").click(function(event) {
     event.preventDefault();
@@ -58,5 +59,15 @@ $(document).ready(function() {
 
     $("#customer-info").hide();
     $("#size-select").show();
+  });
+
+  $("#choose-sauce").click(function() {
+
+    pizzaOne.size = $("#size").val();
+
+    $("#size-select").hide();
+    $("sauce-select").show();
+
+    console.log(pizzaOne);
   });
 });
