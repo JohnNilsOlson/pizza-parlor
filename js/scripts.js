@@ -7,33 +7,64 @@ Customer = function(firstName, lastName, address, cart) {
   this.delivery = delivery;
 };
 
-Cart = function(pizzas, delivery) {
+Cart = function(pizzas) {
   this.pizzas = pizzas;
 };
 
-Pizza = function(size, sauce, cheese, meatToppings, vegToppings,) {
+Pizza = function(size, sauce, cheese, meatToppings, vegToppings, notes, value) {
   this.size = size;
   this.sauce = sauce;
   this.cheese = cheese;
   this.meatToppings = meatToppings;
   this.vegToppings = vegToppings;
+  this.notes = notes;
+  this.value = value;
 };
 
-Pizza.prototype.addSauce = function(pizza) {
+Cart.prototype.addPizza = function(cart) {
+  this.pizzas.push(pizza);
+}
 
-};
+Pizza.prototype.calcBaseValue = function(pizza) {
+  switch(this.size) {
+    case ("small"):
+      this.value = 10;
+      break;
+    case ("medium"):
+      this.value = 11;
+      break;
+    case ("large"):
+      this.value = 12;
+      break;
+    case ("party"):
+      this.value = 13;
+  }
+  switch(this.cheese) {
+    case ("extra"):
+      this.value += 1;
+      break;
+    case ("vegan"):
+      this.value += 1;
+      break;
+    case ("vegan-extra"):
+      this.value += 2;
+      break;
+    default:
+      this.value += 0;
+  }
+}
 
-Pizza.prototype.addCheese = function(pizza) {
+Pizza.prototype.addMeatValue = function(pizza) {
+  for (i = 1; i = this.meatToppings.length; i++) {
+    return this.value += 1;
+  }
+}
 
-};
-
-Pizza.prototype.addMeat = function(pizza) {
-
-};
-
-Pizza.prototype.addVeg = function(pizza) {
-
-};
+Pizza.prototype.addVegValue = function(pizza) {
+  for (i = 2; i = this.vegToppings.length; i++) {
+    return this.value += 1;
+  }
+}
 
 //user interface logic
 $(document).ready(function() {
@@ -41,6 +72,8 @@ $(document).ready(function() {
   const newCustomer = new Customer;
   const cart = new Cart;
   let pizza = new Pizza;
+
+  console.log(cart);
 
   $("#build").click(function(event) {
     event.preventDefault();
@@ -55,7 +88,6 @@ $(document).ready(function() {
 
     newCustomer.address = [];
     newCustomer.address.push(street, city, state, zip);
-    console.log(newCustomer);
 
     $("#customer-info").hide();
     $("#size-select").show();
@@ -68,6 +100,7 @@ $(document).ready(function() {
     $("#size-select").hide();
     $("#sauce-select").show();
 
+    pizza.calcBaseValue();
     console.log(pizza);
   });
 
@@ -78,6 +111,7 @@ $(document).ready(function() {
     $("#sauce-select").hide();
     $("#cheese-select").show();
 
+    pizza.calcBaseValue();
     console.log(pizza);
   });
 
@@ -88,6 +122,7 @@ $(document).ready(function() {
     $("#cheese-select").hide();
     $("#meat-select").show();
 
+    pizza.calcBaseValue();
     console.log(pizza);
   });
 
@@ -103,6 +138,7 @@ $(document).ready(function() {
     $("#meat-select").hide();
     $("#veg-select").show();
 
+    pizza.addMeatValue();
     console.log(pizza);
   });
 
@@ -118,6 +154,7 @@ $(document).ready(function() {
     $("#veg-select").hide();
     $("#instructions").show();
 
+    pizza.addVegValue();
     console.log(pizza);
   });
 
@@ -126,11 +163,14 @@ $(document).ready(function() {
     $("#instructions").hide();
     $("#size-select").show();
 
+    console.log(cart);
   });
 
   $("#checkout").click(function() {
 
     $("#instructions").hide();
     $("#order").show();
+
+    console.log(cart);
   });
 });
