@@ -18,19 +18,19 @@ Pizza = function(size, sauce, cheese, meatToppings, vegToppings,) {
   this.vegToppings = vegToppings;
 };
 
-Pizza.prototype.addSauce = function {
+Pizza.prototype.addSauce = function(pizza) {
 
 };
 
-Pizza.prototype.addCheese = function {
+Pizza.prototype.addCheese = function(pizza) {
 
 };
 
-Pizza.prototype.addMeat = function {
+Pizza.prototype.addMeat = function(pizza) {
 
 };
 
-Pizza.prototype.addVeg = function {
+Pizza.prototype.addVeg = function(pizza) {
 
 };
 
