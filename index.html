@@ -12,6 +12,27 @@
       <h1>Pizza Parlor</h1>
       <div class="show" id="customer-info">
         <h3>Enter Your Info</h3>
+        <form id="customer">
+          <label for="first-name">First Name:</label>
+          <input id="first-name" class="form-control" type="text">
+          <label for="last-name">Last Name:</label>
+          <input id="last-name" class="form-control" type="text">
+          <label for="street-address">Street Address:</label>
+          <input id="street-address" class="form-control" type="text">
+          <label for="city-address">City:</label>
+          <input id="city-address" class="form-control" type="text">
+          <label for="state-address">State:</label>
+          <input id="state-address" class="form-control" type="text">
+          <label for="zip-address">ZIP:</label>
+          <input id="zip-address" class="form-control" type="text">
+          <br>
+          <select class="form-control" id="delivery">
+            <option value="1">Pickup</option>
+            <option value="2">Delivery</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-primary">Build Your Pizza!</button>
+        </form>
       </div>
       <div class="hide" id="size-select">
         <h3>Select Size</h3>
