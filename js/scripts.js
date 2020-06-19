@@ -1,6 +1,7 @@
 //business logic
-Customer = function(name, address, cart) {
-  this.name = name;
+Customer = function(firstName, lastName, address, cart) {
+  this.firstName = firstName;
+  this.lastName = lastName;
   this.address = address;
   this.cart = cart;
   this.delivery = delivery;
@@ -37,9 +38,25 @@ Pizza.prototype.addVeg = function(pizza) {
 //user interface logic
 $(document).ready(function() {
 
-  let customer = new Customer;
+  const newCustomer = new Customer;
+  const cart = new Cart;
 
-  $("#build").click(function){
+  $("#build").click(function(event) {
+    event.preventDefault();
 
-  }
+    newCustomer.firstName = $("input#first-name").val();
+    newCustomer.lastName = $("input#last-name").val();
+    const street = $("input#street-address").val();
+    const city = $("input#city-address").val();
+    const state = $("input#state-address").val();
+    const zip = $("input#zip-address").val();
+    newCustomer.delivery = $("#delivery").val();
+
+    newCustomer.address = [];
+    newCustomer.address.push(street, city, state, zip);
+    console.log(newCustomer);
+
+    $("#customer-info").hide();
+    $("#size-select").show();
+  });
 });
