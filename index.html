@@ -27,8 +27,8 @@
           <input id="zip-address" class="form-control" type="text">
           <br>
           <select class="form-control" id="delivery">
-            <option value="false">Pickup</option>
-            <option value="true">Delivery</option>
+            <option value="pickup">Pickup</option>
+            <option value="delivery">Delivery</option>
           </select>
           <br>
           <button type="button" class="btn btn-primary" id="build">Build Your Pizza!</button>
@@ -93,7 +93,7 @@
           <input type="checkbox" name="vegetables" value="pepper"> Bell Pepper<br>
           <input type="checkbox" name="vegetables" value="jalapeno"> Jalapeno<br>
           <input type="checkbox" name="vegetables" value="pepperoncini"> Pepperoncini<br>
-          <input type="checkbox" name="vegetables" value="chicken"> Pineapple<br>
+          <input type="checkbox" name="vegetables" value="pineapple"> Pineapple<br>
           <input type="checkbox" name="vegetables" value="mushroom"> Mushroom<br>
           <input type="checkbox" name="vegetables" value="tomato"> Tomato<br>
           <input type="checkbox" name="vegetables" value="artichoke"> Artichoke<br>
@@ -105,10 +105,11 @@
       </div>
       <div class="hide" id="instructions">
         <h3>Special Instructions</h3>
+        <br>
         <form id="special-instructions">
           <label for="notes">Any special instructions for your pizza or delivery?</label>
           <input id="notes" class="form-control" type="text">
-          <button type="button" class="btn btn-primary" id="repeat">Build another pizza!</button>
+          <br>
           <button type="button" class="btn btn-primary" id="checkout">Checkout!</button>
         </form>
       </div>
@@ -120,8 +121,10 @@
         <h5 id="pizza-cheese"></h5>
         <h5 id="pizza-meat-toppings"></h5>
         <h5 id="pizza-veg-toppings"></h5>
-        <p>Total cost:</p>
+        <p>Pizza cost:</p>
         <h1>$<span id="pizza-value"></span>.00</h1>
+        <p>Total cost:</p>
+        <h1>$<span id="total-cost"></span>.00</h1>
       </div>
     </div>
   </body>

@@ -1,17 +1,11 @@
 //business logic
-Customer = function(firstName, lastName, address, cart) {
+function Customer (firstName, lastName, address, cart) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.address = address;
-  this.cart = cart;
 };
 
-Cart = function(pizzas, delivery) {
-  this.pizzas = pizzas;
-  this.delivery = delivery;
-};
-
-Pizza = function(size, sauce, cheese, meatToppings, vegToppings, notes, value) {
+function Pizza (size, sauce, cheese, meatToppings, vegToppings, notes, value) {
   this.size = size;
   this.sauce = sauce;
   this.cheese = cheese;
@@ -19,21 +13,9 @@ Pizza = function(size, sauce, cheese, meatToppings, vegToppings, notes, value) {
   this.vegToppings = vegToppings;
   this.notes = notes;
   this.value = value;
+  this.delivery = delivery;
+  this.totalCost = 0;
 };
-
-Cart.prototype.addDeliveryValue = function(cart) {
-  switch(this.delivery) {
-    case(true):
-    this.total += 3;
-    break;
-  default:
-    this.total += 0;
-  }
-}
-
-Cart.prototype.addPizza = function(cart) {
-  this.pizzas.push(pizza);
-}
 
 Pizza.prototype.calcBaseValue = function(pizza) {
   switch(this.size) {
@@ -77,6 +59,19 @@ Pizza.prototype.addVegValue = function(pizza) {
   }
 }
 
+Pizza.prototype.calcTotal = function(pizza) {
+  
+  this.totalCost = this.value;
+  
+  switch(this.delivery) {
+    case ("delivery"):
+      this.totalCost += 3;
+      break;
+    default:
+      this.totalCost += 0;
+  }
+}
+
 //user interface logic
 Customer.prototype.displayName = function(customer) {
   $("#customer-name").text(this.firstName);
@@ -89,16 +84,13 @@ Pizza.prototype.displayDetails = function(pizza) {
   $("#pizza-cheese").text(this.cheese);
   $("#pizza-meat-toppings").text(this.meatToppings);
   $("#pizza-veg-toppings").text(this.vegToppings);
-
+  $("#total-cost").text(this.totalCost);
 }
 
 $(document).ready(function() {
 
   const newCustomer = new Customer;
-  const cart = new Cart;
   let pizza = new Pizza;
-
-  console.log(cart);
 
   $("#build").click(function(event) {
     event.preventDefault();
@@ -109,7 +101,7 @@ $(document).ready(function() {
     const city = $("input#city-address").val();
     const state = $("input#state-address").val();
     const zip = $("input#zip-address").val();
-    newCustomer.delivery = $("#delivery").val();
+    pizza.delivery = $("#delivery").val();
 
     newCustomer.address = [];
     newCustomer.address.push(street, city, state, zip);
@@ -187,19 +179,11 @@ $(document).ready(function() {
     pizza.displayDetails();
   });
 
-  $("#repeat").click(function() {
-
-    $("#instructions").hide();
-    $("#size-select").show();
-
-    console.log(cart);
-  });
-
   $("#checkout").click(function() {
+    pizza.calcTotal();
+    pizza.displayDetails();
 
     $("#instructions").hide();
     $("#order").show();
-
-    console.log(cart);
   });
 });
