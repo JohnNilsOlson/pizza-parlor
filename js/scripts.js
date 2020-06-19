@@ -1,13 +1,13 @@
 //business logic
-Cart = function(customer, pizzas, delivery) {
-  this.customer = customer;
-  this.pizzas = pizzas;
+Customer = function(name, address, cart) {
+  this.name = name;
+  this.address = address;
+  this.cart = cart;
   this.delivery = delivery;
 };
 
-Customer = function(name, address) {
-  this.name = name;
-  this.address = address;
+Cart = function(pizzas, delivery) {
+  this.pizzas = pizzas;
 };
 
 Pizza = function(size, sauce, cheese, meatToppings, vegToppings,) {
@@ -35,3 +35,11 @@ Pizza.prototype.addVeg = function(pizza) {
 };
 
 //user interface logic
+$(document).ready(function() {
+
+  let customer = new Customer;
+
+  $("#build").click(function){
+
+  }
+});
