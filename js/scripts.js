@@ -55,14 +55,14 @@ Pizza.prototype.calcBaseValue = function(pizza) {
 }
 
 Pizza.prototype.addMeatValue = function(pizza) {
-  for (i = 1; i = this.meatToppings.length; i++) {
-    return this.value += 1;
+  for (i = 1; i < this.meatToppings.length; i++) {
+    this.value += 1;
   }
 }
 
 Pizza.prototype.addVegValue = function(pizza) {
-  for (i = 2; i = this.vegToppings.length; i++) {
-    return this.value += 1;
+  for (i = 2; i < this.vegToppings.length; i++) {
+    this.value += 1;
   }
 }
 
