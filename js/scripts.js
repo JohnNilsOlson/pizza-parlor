@@ -66,7 +66,27 @@ $(document).ready(function() {
     pizzaOne.size = $("#size").val();
 
     $("#size-select").hide();
-    $("sauce-select").show();
+    $("#sauce-select").show();
+
+    console.log(pizzaOne);
+  });
+
+  $("#choose-cheese").click(function() {
+
+    pizzaOne.sauce = $("#sauce").val();
+
+    $("#sauce-select").hide();
+    $("#cheese-select").show();
+
+    console.log(pizzaOne);
+  });
+
+  $("#choose-meat").click(function() {
+
+    pizzaOne.cheese = $("#cheese").val();
+
+    $("#cheese-select").hide();
+    $("#meat-select").show();
 
     console.log(pizzaOne);
   });
