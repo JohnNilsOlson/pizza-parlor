@@ -84,6 +84,12 @@ Customer.prototype.displayName = function(customer) {
 
 Pizza.prototype.displayDetails = function(pizza) {
   $("#pizza-value").text(this.value);
+  $("#pizza-size").text(this.size);
+  $("#pizza-sauce").text(this.sauce);
+  $("#pizza-cheese").text(this.cheese);
+  $("#pizza-meat-toppings").text(this.meatToppings);
+  $("#pizza-veg-toppings").text(this.vegToppings);
+
 }
 
 $(document).ready(function() {
@@ -127,7 +133,9 @@ $(document).ready(function() {
 
   $("#choose-cheese").click(function() {
 
-    pizza.sauce = $("#sauce").val();   
+    pizza.sauce = $("#sauce").val();
+    
+    pizza.displayDetails();
 
     $("#sauce-select").hide();
     $("#cheese-select").show();
@@ -139,7 +147,7 @@ $(document).ready(function() {
     pizza.cheese = $("#cheese").val();
 
     pizza.calcBaseValue();
-    pizza.display();
+    pizza.displayDetails();
 
     $("#cheese-select").hide();
     $("#meat-select").show();
