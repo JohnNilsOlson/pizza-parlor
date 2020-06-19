@@ -40,7 +40,7 @@ $(document).ready(function() {
 
   const newCustomer = new Customer;
   const cart = new Cart;
-  let pizzaOne = new Pizza;
+  let pizza = new Pizza;
 
   $("#build").click(function(event) {
     event.preventDefault();
@@ -63,31 +63,61 @@ $(document).ready(function() {
 
   $("#choose-sauce").click(function() {
 
-    pizzaOne.size = $("#size").val();
+    pizza.size = $("#size").val();
 
     $("#size-select").hide();
     $("#sauce-select").show();
 
-    console.log(pizzaOne);
+    console.log(pizza);
   });
 
   $("#choose-cheese").click(function() {
 
-    pizzaOne.sauce = $("#sauce").val();
+    pizza.sauce = $("#sauce").val();
 
     $("#sauce-select").hide();
     $("#cheese-select").show();
 
-    console.log(pizzaOne);
+    console.log(pizza);
   });
 
   $("#choose-meat").click(function() {
 
-    pizzaOne.cheese = $("#cheese").val();
+    pizza.cheese = $("#cheese").val();
 
     $("#cheese-select").hide();
     $("#meat-select").show();
 
-    console.log(pizzaOne);
+    console.log(pizza);
+  });
+
+  $("#choose-veg").click(function() {
+
+    pizza.meatToppings = [];
+
+    $("input:checkbox[name=meats]:checked").each(function() {
+      const meat = $(this).val();
+      pizza.meatToppings.push(meat);
+    });
+
+    $("#meat-select").hide();
+    $("#veg-select").show();
+
+    console.log(pizza);
+  });
+
+  $("#choose-intructions").click(function() {
+    
+    pizza.vegToppings = [];
+
+    $("input:checkbox[name=vegetables]:checked").each(function() {
+      const veg = $(this).val();
+      pizza.vegToppings.push(veg);
+    });
+
+    $("#veg-select").hide();
+    $("#instructions").show();
+
+    console.log(pizza);
   });
 });
