@@ -73,11 +73,12 @@ Pizza.prototype.calcTotal = function(pizza) {
 }
 
 //user interface logic
-Customer.prototype.displayName = function(customer) {
+Customer.prototype.displayCustomerDetails = function(customer) {
   $("#customer-name").text(this.firstName);
+  $("#deliver").text(this.firstName + " " + this.lastName);
 }
 
-Pizza.prototype.displayDetails = function(pizza) {
+Pizza.prototype.displayPizzaDetails = function(pizza) {
   $("#pizza-value").text(this.value);
   $("#pizza-size").text(this.size);
   $("#pizza-sauce").text(this.sauce);
@@ -111,12 +112,10 @@ $(document).ready(function() {
   });
 
   $("#choose-sauce").click(function() {
-
     pizza.size = $("#size").val();
-
-    newCustomer.displayName();
     pizza.calcBaseValue();
-    pizza.displayDetails();
+    pizza.displayPizzaDetails();
+    newCustomer.displayCustomerDetails();
 
     $("#size-select").hide();
     $("#sauce-select").show();
@@ -124,30 +123,23 @@ $(document).ready(function() {
   });
 
   $("#choose-cheese").click(function() {
-
     pizza.sauce = $("#sauce").val();
-    
-    pizza.displayDetails();
+    pizza.displayPizzaDetails();
 
     $("#sauce-select").hide();
     $("#cheese-select").show();
-
   });
 
   $("#choose-meat").click(function() {
-
     pizza.cheese = $("#cheese").val();
-
     pizza.calcBaseValue();
-    pizza.displayDetails();
+    pizza.displayPizzaDetails();
 
     $("#cheese-select").hide();
     $("#meat-select").show();
-
   });
 
   $("#choose-veg").click(function() {
-
     pizza.meatToppings = [];
 
     $("input:checkbox[name=meats]:checked").each(function() {
@@ -156,15 +148,13 @@ $(document).ready(function() {
     });
 
     pizza.addMeatValue();
-    pizza.displayDetails();
+    pizza.displayPizzaDetails();
 
     $("#meat-select").hide();
     $("#veg-select").show();
- 
   });
 
   $("#choose-intructions").click(function() {
-    
     pizza.vegToppings = [];
 
     $("input:checkbox[name=vegetables]:checked").each(function() {
@@ -172,18 +162,19 @@ $(document).ready(function() {
       pizza.vegToppings.push(veg);
     });
 
+    pizza.addVegValue();
+    pizza.displayPizzaDetails();
+
     $("#veg-select").hide();
     $("#instructions").show();
-
-    pizza.addVegValue();
-    pizza.displayDetails();
   });
 
   $("#checkout").click(function() {
     pizza.calcTotal();
-    pizza.displayDetails();
+    pizza.displayPizzaDetails();
+    newCustomer.displayCustomerDetails();
 
     $("#instructions").hide();
-    $("#order").show();
+    $("#order-total").show();
   });
 });
